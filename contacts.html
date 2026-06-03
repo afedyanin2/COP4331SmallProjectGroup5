@@ -31,13 +31,13 @@
 		<!-- search bar & add contact button -->
 		<div class="d-flex gap-2 mb-3">
 			<form id="searchForm" class="input-group flex-grow-1">
-				<input type="text" id="searchInput" class="form-control" placeholder="Search Contacts">
+				<input type="text" id="searchInput" class="form-control" placeholder="Search Contacts" aria-label="Search contacts">
 				<button class="input-group-text bg-white border-start-0" type="submit">
 					<i class="bi bi-search"></i>
 				</button>
 
 			</form>
-			<button class="btn btn-primary text-nowrap">
+			<button class="btn btn-primary text-nowrap" data-bs-toggle="modal" data-bs-target="#addContactModal">
 				<i class="bi bi-plus-circle"></i>
 				Add Contact
 			</button>
@@ -54,12 +54,12 @@
 
 
 <!-- Log Out Modal -->
-<div class="modal fade" id="logoutModal" tabindex="-1">
+<div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutmodalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content p-2">
 
 		<div class="modal-body text-center">
-			<h5>Are you sure you want to log out?</h5>
+			<h5 id="logoutModalLabel">Are you sure you want to log out?</h5>
 		</div>
 
 		<div class="modal-footer justify-content-center">
@@ -72,6 +72,46 @@
 			Log Out
 			</button>
 		</div>
+
+		</div>
+	</div>
+</div>
+
+
+<!-- Add Contact Modal -->
+<div class="modal fade" id="addContactModal" tabindex="-1" aria-labelledby="addContactModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content p-3">
+      
+			<div class="modal-header">
+				<h5 class="modal-title" id="addContactModalLabel">Add New Contact</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+
+			<form action="/AddContact.php">
+				<div class="modal-body">
+				<div class="mb-3">
+					<label for="first-name" class="form-label">First Name:</label>
+					<input type="text" class="form-control" id="first-name" placeholder="First Name" name="firstName" required>
+				</div>
+				<div class="mb-3">
+					<label for="last-name" class="form-label">Last Name:</label>
+					<input type="text" class="form-control" id="last-name" placeholder="Last Name" name="lastName">
+				</div>
+				<div class="mb-3">
+					<label for="phone-num" class="form-label">Phone Number:</label>
+					<input type="text" class="form-control" id="phone-num" placeholder="Phone Number" name="phoneNum">
+				</div>
+				<div class="mb-3">
+					<label for="user-email" class="form-label">Email:</label>
+					<input type="email" class="form-control" id="user-email" placeholder="Email" name="emailAddress">
+				</div>
+				</div>
+        
+				<div class="modal-footer d-grid">
+				<button type="submit" class="btn btn-primary">Add Contact</button>
+				</div>
+			</form>
 
 		</div>
 	</div>
