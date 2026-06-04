@@ -1,6 +1,17 @@
+:root
+{
+	--cloud-dark: #001950;
+	--cloud-light: #e3eaff;
+	--cloud-accent: #4da6ff;
+    --cloud-card: #b2b2b2;
+    --cloud-error: #95060a;
+}
+
+
 body 
 {
-    background-color: #707070;
+	color: var(--cloud-dark);
+    background-color: var(--cloud-light);
 }
 
 #title 
@@ -10,34 +21,18 @@ body
     margin: 2% 5%;
     text-align: center;
     font-family: 'Ubuntu', sans-serif;
-    color: #FFFFFF;
+    color: var(--cloud-dark);
 }
 
-#loginDiv
-{
-    font-size: 30px;
-    width: 70%;
-    margin-left: 15%;
-    padding: 25px;
-    background-color: #b2b2b2;
-}
-
-#loggedInDiv
-{
-    font-size: 30px;
-    width: 70%;
-    margin-left: 15%;
-    padding: 25px;
-    background-color: #b2b2b2;
-}
-
+#loginDiv,
+#loggedInDiv,
 #accessUIDiv
 {
     font-size: 30px;
     width: 70%;
     margin-left: 15%;
     padding: 25px;
-    background-color: #b2b2b2;
+    background-color: var(--cloud-card);
 }
 
 .buttons
@@ -53,6 +48,19 @@ body
     background-color: #00d5124f;
     color: #FFFFFF;
     opacity: 50%;
+}
+
+.custom-navbar 
+{
+	background-color: var(--cloud-dark);
+}	
+
+.dropdown-toggle::after {
+    display: none;
+}
+	
+.no-wrap-text {
+    white-space: nowrap;
 }
 
 #loginName
@@ -72,36 +80,6 @@ body
 	font-size: 30px;
 }
 
-input[type="text"],input[type="password"]{
-    border-radius: 25px;
-    text-align: center;
-    width: 80%;
-    margin-left: 10%;
-    margin-bottom: 2%;
-    font-family: 'Ubuntu', sans-serif;
-}
-
-#inner-title{
-    display: inline-block;
-    font-size: 0.8em;
-    width: 90%;
-    text-align: center;
-    margin-left: 5%;
-    margin-bottom: 2%;
-    font-family: 'Ubuntu', sans-serif;
-    color: #95060a;
-}
-
-#loginResult{
-    display: inline-block;
-    font-size: 0.8em;
-    width: 90%;
-    text-align: center;
-    margin-left: 5%;
-    margin-bottom: 2%;
-    font-family: 'Ubuntu', sans-serif;
-    color: #95060a;
-}
 
 #userName{
     display: inline-block;
@@ -127,14 +105,16 @@ select{
     display: none;
 }
 
-#colorAddResult{
-    display: inline-block;
+#inner-title,
+#loginResult,
+#colorAddResult
+{
+	display: inline-block;
     font-size: 0.8em;
     width: 90%;
     text-align: center;
     margin-left: 5%;
-    margin-top: 2%;
-    margin-bottom: 1%;
+    margin-bottom: 2%;
     font-family: 'Ubuntu', sans-serif;
-    color: #95060a;
+    color: var(--cloud-error);
 }
