@@ -1,13 +1,25 @@
 <?php
 	$inData = getRequestInfo();
 
-	$userId = $inData["userId"];
+	$userId = intval($inData["userId"]);
 	$firstName = $inData["FirstName"];
 	$lastName = $inData["LastName"];
 	$phone = $inData["Phone"];
 	$email = $inData["Email"];
 
 	$conn = new mysqli("localhost", "Dante", "COP4331Project1!", "CRUD");
+
+	if ($userId < 1)
+	{
+		returnWithError("Invalid user session");
+		exit;
+	}
+
+	if (empty($firstName))
+	{
+		returnWithError("First name is required");
+		exit;
+	}
 
 	if ($conn->connect_error)
 	{
@@ -36,7 +48,7 @@
 
 	function returnWithError($err)
 	{
-		$retValue = '{"error":"' . $err . '"}';
+		$retValue = json_encode(["error" => $err]);
 		sendResultInfoAsJson($retValue);
 	}
 

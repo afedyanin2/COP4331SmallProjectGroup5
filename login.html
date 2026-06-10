@@ -9,7 +9,7 @@
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
 		<!-- Latest compiled JavaScript -->
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-		<script src="code.js" defer></script>
+		<script src="js/code.js" defer></script>
 </head>
 
 <body style="min-height:100vh; padding-top:120px">
@@ -20,7 +20,7 @@
 		<i class="bi bi-cloud"></i>
 		CloudContacts
 		</a>
-		<button class="btn btn-primary" type="button">Log In</button>
+		<a href="login.html" class="btn btn-primary">Log In</a>
 	</div>
 </nav>
 
@@ -30,14 +30,14 @@
 	<div class="card p-4">
 		<h2 class="text-center">Sign In</h2>
 
-		<form action="/Login.php">
+		<form id="loginForm">
 			<div class="mb-3 mt-3">
 				<label for="username" class="form-label">Username:</label>
-				<input type="text" class="form-control" id="username" placeholder="Enter username" name="username" required>
+				<input type="text" class="form-control" id="loginName" placeholder="Enter username" name="username" required>
 			</div>	
 			<div class="mb-3">
 				<label for="pwd" class="form-label">Password:</label>
-				<input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd" required>
+				<input type="password" class="form-control" id="loginPassword" placeholder="Enter password" name="pswd" required>
 			</div>
 			<div class="form-check mb-3">
 				<label class="form-check-label">
@@ -47,6 +47,7 @@
 			<div class="d-grid">
 				<button type="submit" class="btn btn-primary">Log In</button>
 			</div>
+			<p id="loginResult" class="text-danger text-center mt-3"></p>
 		</form>
 		
 		<i>

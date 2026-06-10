@@ -2,8 +2,15 @@
 
 	$inData = getRequestInfo();
 
-	$contactId = $inData["ID"];
-	$userId = $inData["userId"];
+	$contactId = intval($inData["ID"]);
+    $userId = intval($inData["userId"]);
+
+	// if guard
+	if ($userId < 1 || $contactId < 1)
+	{
+		returnWithError("Invalid request");
+		exit;
+	}
 
 	$conn = new mysqli("localhost", "Dante", "COP4331Project1!", "CRUD");
 
@@ -43,7 +50,7 @@
 
 	function returnWithError($err)
 	{
-		$retValue = '{"error":"' . $err . '"}';
+		$retValue = json_encode(["error" => $err]);
 		sendResultInfoAsJson($retValue);
 	}
 

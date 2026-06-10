@@ -2,8 +2,8 @@
 
 	$inData = getRequestInfo();
 
-	$searchResults = "";
-	$searchCount = 0;
+	$userId = intval($inData["userId"] ?? 0);
+	$search = $inData["search"] ?? "";
 
 	$conn = new mysqli("localhost", "Dante", "COP4331Project1!", "CRUD");
 
@@ -22,34 +22,24 @@
 		$stmt->execute();
 
 		$result = $stmt->get_result();
+		$contacts = [];
 
-		while($row = $result->fetch_assoc())
+		while ($row = $result->fetch_assoc())
 		{
-			if($searchCount > 0)
-			{
-				$searchResults .= ",";
-			}
-
-			$searchCount++;
-
-			$searchResults .= '{"ID":"' . $row["ID"] . '",';
-			$searchResults .= '"FirstName":"' . $row["FirstName"] . '",';
-			$searchResults .= '"LastName":"' . $row["LastName"] . '",';
-			$searchResults .= '"Phone":"' . $row["Phone"] . '",';
-			$searchResults .= '"Email":"' . $row["Email"] . '"}';
-		}
-
-		if($searchCount == 0)
-		{
-			returnWithError("No Records Found");
-		}
-		else
-		{
-			returnWithInfo($searchResults);
+			// new array for json encode
+			$contacts[] = [
+				"ID"        => $row["ID"],
+				"FirstName" => $row["FirstName"],
+				"LastName"  => $row["LastName"],
+				"Phone"     => $row["Phone"],
+				"Email"     => $row["Email"]
+			];
 		}
 
 		$stmt->close();
 		$conn->close();
+		// JS show empty-state
+		returnWithInfo($contacts);
 	}
 
 	function getRequestInfo()
@@ -65,14 +55,14 @@
 
 	function returnWithError($err)
 	{
-		$retValue = '{"results":[],"error":"' . $err . '"}';
-		sendResultInfoAsJson($retValue);
+		$retValue = json_encode(["results" => [], "error" => $err]);
+    	sendResultInfoAsJson($retValue);
 	}
 
-	function returnWithInfo($searchResults)
+	function returnWithInfo($contacts)
 	{
-		$retValue = '{"results":[' . $searchResults . '],"error":""}';
-		sendResultInfoAsJson($retValue);
+		$retValue = json_encode(["results" => $contacts, "error" => ""]);
+    	sendResultInfoAsJson($retValue);
 	}
 
 ?>
