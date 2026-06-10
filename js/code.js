@@ -1,4 +1,4 @@
-const urlBase = 'http://137.184.100.57/LAMPAPI';
+const urlBase = 'http://cloud-contacts.com/LAMPAPI';
 const extension = 'php';
 
 let userId = 0;
@@ -182,6 +182,77 @@ function addContact()
 	}
 }
 
+function editContact(contact)
+{
+	
+	// current info
+	document.getElementById("edit-contact-id").value  = contact.ID;
+	document.getElementById("edit-first-name").value  = contact.FirstName;
+	document.getElementById("edit-last-name").value   = contact.LastName;
+	document.getElementById("edit-phone-num").value   = contact.Phone;
+	document.getElementById("edit-user-email").value  = contact.Email;
+
+	let modal = new bootstrap.Modal(document.getElementById("editContactModal"));
+	modal.show();
+}
+
+function updateContact()
+{
+	// update info
+	let contactId    = document.getElementById("edit-contact-id").value;
+	let firstNameVal = document.getElementById("edit-first-name").value;
+	let lastNameVal  = document.getElementById("edit-last-name").value;
+	let phone        = document.getElementById("edit-phone-num").value;
+	let email        = document.getElementById("edit-user-email").value;
+
+	let info =
+	{
+		ID:        contactId,
+		userId:    userId,
+		FirstName: firstNameVal,
+		LastName:  lastNameVal,
+		Phone:     phone,
+		Email:     email
+	};
+
+	let xhr = new XMLHttpRequest();
+	let jsonPayload = JSON.stringify(info);
+	let url = urlBase + "/UpdateContact." + extension;
+
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	try
+	{
+		xhr.onreadystatechange = function()
+		{
+			if (this.readyState == 4 && this.status == 200)
+			{
+				let jsonObject = JSON.parse(xhr.responseText);
+
+				if (jsonObject.error && jsonObject.error.length > 0)
+				{
+					alert(jsonObject.error);
+					return;
+				}
+
+				let modalElement = document.getElementById("editContactModal");
+				let modal = bootstrap.Modal.getInstance(modalElement);
+				if (modal)
+				{
+					modal.hide();
+				}
+
+				searchContacts();
+			}
+		};
+		xhr.send(jsonPayload);
+	}
+	catch(err)
+	{
+		alert(err.message);
+	}
+}
+
 function deleteContact(contactId)
 {
 
@@ -288,6 +359,15 @@ function searchContacts()
 					emailCell.textContent = contact.Email;
 					actionCell.className  = "text-end";
 
+
+					let editBtn = document.createElement("button");
+					editBtn.className = "btn btn-primary btn-sm me-1";
+					editBtn.textContent = "Edit";
+					editBtn.addEventListener("click", function()
+					{
+						editContact(contact);
+					});
+
 					let deleteBtn = document.createElement("button");
 					deleteBtn.className = "btn btn-danger btn-sm";
 					deleteBtn.textContent = "Delete";
@@ -296,6 +376,7 @@ function searchContacts()
 						deleteContact(contact.ID);
 					});
 
+					actionCell.appendChild(editBtn);
 					actionCell.appendChild(deleteBtn);
 				}
 			}
@@ -384,6 +465,7 @@ document.addEventListener("DOMContentLoaded", function()
 	let loginForm      = document.getElementById("loginForm");
 	let signupForm     = document.getElementById("signupForm");
 	let addContactForm = document.getElementById("addContactForm");
+	let editContactForm = document.getElementById("editContactForm");
 	let searchForm     = document.getElementById("searchForm");
 
 	if (loginForm)
@@ -403,7 +485,6 @@ document.addEventListener("DOMContentLoaded", function()
 			doRegister();
 		});
 	}
-
 	if (addContactForm)
 	{
 		addContactForm.addEventListener("submit", function(event)
@@ -411,6 +492,14 @@ document.addEventListener("DOMContentLoaded", function()
 			event.preventDefault();
 			addContact();
 		});
+	}
+	if (editContactForm)
+	{
+    editContactForm.addEventListener("submit", function(event)
+    {
+        event.preventDefault();
+        updateContact();
+    });
 	}
 
 	if (searchForm)
