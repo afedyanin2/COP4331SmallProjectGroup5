@@ -55,6 +55,17 @@ body
 	background-color: var(--cloud-dark);
 }	
 
+.custom-button
+{
+	background-color: var(--cloud-dark);
+	color: #FFFFFF;
+}
+
+.custom-button:hover {
+    background-color: #002c80;
+    color: white;
+}
+
 .dropdown-toggle::after {
     display: none;
 }
