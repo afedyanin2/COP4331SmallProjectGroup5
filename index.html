@@ -1,21 +1,32 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<title>COP 4331 LAMP Stack Demo</title>
-	<script type="text/javascript" src="js/md5.js"></script>
-	<script type="text/javascript" src="js/code.js"></script>
-    <link href="css/styles.css" rel="stylesheet">	
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+		<title>Main Page (Logged Out)</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- Latest compiled and minified CSS -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+		<link href="css/styles.css" rel="stylesheet">
+		<!-- Latest compiled JavaScript -->
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+		<script src="js/code.js" defer></script>
 </head>
-<body>
 
-<h1 id="title">COP 4331 LAMP Stack Demo</h1>
+<body style="min-height:100vh; padding-top:120px">
 
-<div id="loginDiv">
-	<span id="inner-title">PLEASE LOG IN</span>
-	<input type="text" id="loginName" placeholder="Username" /><br />
-	<input type="password" id="loginPassword" placeholder="Password"/><br />
-	<button type="button" id="loginButton" class="buttons" onclick="doLogin();"> Do It </button>
-	<span id="loginResult"></span>
+<nav class="navbar navbar-expand-sm navbar-dark fixed-top custom-navbar">
+	<div class="container-fluid">
+		<a class="navbar-brand" href="main_logged_out.html">
+		<i class="bi bi-cloud"></i>
+		CloudContacts
+		</a>
+		<a href="login.html" class="btn btn-light" type="button">Log In</a>
+	</div>
+</nav>
+
+<div class="container-fluid" style="margin-top:80px">
+	<h1>An easy to use contact manager</h1>
 </div>
 
 </body>
