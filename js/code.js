@@ -349,15 +349,19 @@ function searchContacts()
 					let contact = jsonObject.results[i];
 					let row = table.insertRow();
 
-					let nameCell   = row.insertCell();
-					let phoneCell  = row.insertCell();
-					let emailCell  = row.insertCell();
-					let actionCell = row.insertCell();
 
-					nameCell.textContent  = contact.FirstName + " " + contact.LastName;
-					phoneCell.textContent = contact.Phone;
-					emailCell.textContent = contact.Email;
-					actionCell.className  = "text-end";
+					// edit to make cells
+					let firstNameCell = row.insertCell();
+					let lastNameCell  = row.insertCell();
+					let phoneCell     = row.insertCell();
+					let emailCell     = row.insertCell();
+					let actionCell    = row.insertCell();
+
+					firstNameCell.textContent = contact.FirstName;
+					lastNameCell.textContent  = contact.LastName;
+					phoneCell.textContent     = contact.Phone;
+					emailCell.textContent     = contact.Email;
+					actionCell.className      = "text-end";
 
 
 					let editBtn = document.createElement("button");
