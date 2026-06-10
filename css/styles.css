@@ -55,29 +55,23 @@ body
 	background-color: var(--cloud-dark);
 }	
 
+.custom-button
+{
+	background-color: var(--cloud-dark);
+	color: #FFFFFF;
+}
+
+.custom-button:hover {
+    background-color: #002c80;
+    color: white;
+}
+
 .dropdown-toggle::after {
     display: none;
 }
 	
 .no-wrap-text {
     white-space: nowrap;
-}
-
-#loginName
-{
-	font-size: 30px;
-}
-#loginPassword
-{
-	font-size: 30px;
-}
-#searchText
-{
-	font-size: 30px;
-}
-#colorText
-{
-	font-size: 30px;
 }
 
 
