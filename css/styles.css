@@ -2,7 +2,7 @@
 {
 	--cloud-dark: #001950;
 	--cloud-light: #e3eaff;
-	--cloud-accent: #4da6ff;
+	--cloud-accent: #8da9fc;
     --cloud-card: #b2b2b2;
     --cloud-error: #95060a;
 }
@@ -59,6 +59,12 @@ body
 {
 	background-color: var(--cloud-dark);
 	color: #FFFFFF;
+}
+
+.custom-header th
+{
+	background-color: var(--cloud-accent) !important;
+	color: var(--cloud-dark) !important;
 }
 
 .custom-button:hover {
