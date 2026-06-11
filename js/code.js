@@ -365,7 +365,7 @@ function searchContacts()
 
 
 					let editBtn = document.createElement("button");
-					editBtn.className = "btn btn-primary btn-sm me-1";
+					editBtn.className = "btn custom-button btn-sm me-1";
 					editBtn.textContent = "Edit";
 					editBtn.addEventListener("click", function()
 					{
